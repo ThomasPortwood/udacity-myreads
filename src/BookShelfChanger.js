@@ -1,5 +1,6 @@
 import React from 'react'
 import * as PropTypes from "prop-types";
+import {shelfDescriptions} from "./ShelfDescriptions"
 
 function BookShelfChanger(props) {
 
@@ -10,9 +11,7 @@ function BookShelfChanger(props) {
         defaultValue={props.book.shelf || 'none'}
       >
         <option value="move" disabled>Move to...</option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
+        {shelfDescriptions.map(s => (<option key={s.name} value={s.name}>{s.displayName}</option>))}
         <option value="none">None</option>
       </select>
     </div>
@@ -20,8 +19,8 @@ function BookShelfChanger(props) {
 }
 
 BookShelfChanger.propTypes = {
-  onBookUpdate: PropTypes.func.isRequired,
-  book: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired,
+  onBookUpdate: PropTypes.func.isRequired
 }
 
 export default BookShelfChanger
